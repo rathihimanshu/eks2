@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: podappns
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: podapp
+  namespace: podappns
+  labels:
+    name: podapp
+spec:
+  containers:
+  - name: myapp
+    image: tomcat:8
+
+    
