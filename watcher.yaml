@@ -1,0 +1,55 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+ name: nginx-config
+data:
+ index.html: |
+   <html>
+   <body><h1>Hello from ConfigMap -- it is modified...</h1></body>
+   </html>
+---
+apiVersion: v1
+kind: Pod
+metadata:
+ name: nginx-with-watcher
+spec:
+ containers:
+ - name: nginx
+   image: nginx
+   volumeMounts:
+   - name: html-volume
+     mountPath: /usr/share/nginx/html
+   ports:
+   - containerPort: 80
+
+
+ - name: watcher
+   image: busybox
+   command: ["sh", "-c"]
+   args:
+     - |
+       echo "Starting watcher..."
+       last_checksum=""
+       while true; do
+         new_checksum=$(md5sum /config/index.html | cut -d' ' -f1)
+         if [ "$new_checksum" != "$last_checksum" ]; then
+           echo "Config file changed. Reloading nginx..."
+           kill -HUP 1  # Sends signal to PID 1 (nginx main process)
+           last_checksum=$new_checksum
+         fi
+         sleep 5
+       done
+   volumeMounts:
+   - name: html-volume
+     mountPath: /config
+
+
+ volumes:
+ - name: html-volume
+   configMap:
+     name: nginx-config
+     items:
+     - key: index.html
+       path: index.html
+
+
