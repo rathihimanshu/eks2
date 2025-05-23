@@ -26,5 +26,21 @@ spec:
         configMapKeyRef:
           name: myconf
           key: uid
-    
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: confpod-v
+spec:
+  containers:
+  - name: myapp
+    image: centos:7
+    command: [/bin/sh,-c,"sleep 3600"]
+    volumeMounts:
+      - name: confvol
+        mountPath: /root/data
+  volumes:
+  - name: confvol
+    configMap:
+      name: myconf
 
