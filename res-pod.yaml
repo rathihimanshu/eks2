@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: rs-pod
+spec:
+  containers:
+  - name: myapp
+    image: tomcat:8
+    resources:
+      requests:
+        memory: "128Mi"
+        cpu: "500m" 
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+  - name: c2
+    image: redis
+    resources:
+      requests:
+        memory: "128Mi"
+        cpu: "500m"  
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+

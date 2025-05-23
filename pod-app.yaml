@@ -10,6 +10,8 @@ metadata:
   namespace: podappns
   labels:
     name: podapp
+    env: dev
+    client: abc 
 spec:
   containers:
   - name: myapp
