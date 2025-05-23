@@ -3,23 +3,19 @@ kind: Pod
 metadata:
   name: rs-pod
 spec:
+  initContainers:
+  - name: i1
+    image: centos:7
+    command: [/bin/sh,-c,"sleep 20"]
   containers:
   - name: myapp
     image: tomcat:8
     resources:
       requests:
-        memory: "128Mi"
-        cpu: "500m" 
+        memory: "64Mi"
+        cpu: "100m" 
       limits:
         memory: "128Mi"
         cpu: "500m"
-  - name: c2
-    image: redis
-    resources:
-      requests:
-        memory: "128Mi"
-        cpu: "500m"  
-      limits:
-        memory: "128Mi"
-        cpu: "500m"
+  
 
