@@ -21,7 +21,7 @@ kind: Service
 metadata:
   name: testserv
 spec:
-  types: LoadBalancer
+  type: LoadBalancer
   selector:
     app: testdep
   ports:
