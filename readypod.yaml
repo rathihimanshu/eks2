@@ -16,7 +16,7 @@ spec:
       periodSeconds: 5
     readinessProbe:
       httpGet:
-        path: /index.html
+        path: /index1.html
         port: 80
       initialDelaySeconds: 5
       periodSeconds: 5
