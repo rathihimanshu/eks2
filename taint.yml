@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: taintpod
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+  tolerations:
+  - key: "computing"
+    operator: "Equals"
+    value: "gpu"
+    effect: "NoSchedule"
