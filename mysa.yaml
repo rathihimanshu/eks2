@@ -3,3 +3,16 @@ kind: ServiceAccount
 metadata:
   name: myserviceaccount
   namespace: default 
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mysa
+  labels:
+    name: mysa
+spec:
+  serviceAccountName: myserviceaccount
+  containers:
+  - name: mysa
+    image: nginx
+    
