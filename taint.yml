@@ -8,6 +8,6 @@ spec:
     image: nginx
   tolerations:
   - key: "computing"
-    operator: "Equals"
+    operator: "Equal"
     value: "gpu"
     effect: "NoSchedule"
