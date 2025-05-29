@@ -1,0 +1,8 @@
+apiVersion: v1
+  kind: ResourceQuota
+  metadata:
+    namespace: rsns
+    name: quota
+  spec:
+    hard:
+      pods: "1"
