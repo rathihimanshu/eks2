@@ -14,5 +14,6 @@ spec:
   serviceAccountName: myserviceaccount
   containers:
   - name: mysa
-    image: nginx
+    image: amazon/aws-cli
+    command: [/bin/sh,-c,'sleep 3600']
     
